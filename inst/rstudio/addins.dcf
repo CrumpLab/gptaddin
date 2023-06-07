@@ -2,3 +2,8 @@ Name: line_editor
 Description: openai edits text for clarity, flow, and brevity
 Binding: line_editor
 Interactive: false
+
+Name: points_to_prose
+Description: openai lengthen pointform to longform prose
+Binding: points_to_prose
+Interactive: false
