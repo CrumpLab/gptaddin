@@ -28,7 +28,7 @@ line_editor <- function(){
     messages = list(
       list(
         "role" = "system",
-        "content" = "You are an editorial writing assistant. Your task is to edit the content you receive for improved clarity, flow, and reduced word count."
+        "content" = "You are an editorial writing assistant. Your task is to edit the content you receive for improved clarity, flow, and reduced word count. You should respect the original style of the input text and use an active voice."
       ),
       list(
         "role" = "user",
