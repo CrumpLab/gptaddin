@@ -7,3 +7,18 @@ Name: points_to_prose
 Description: openai lengthen pointform to longform prose
 Binding: points_to_prose
 Interactive: false
+
+Name: summarize_main_points
+Description: openai summarize prose in pointform
+Binding: summarize_main_points
+Interactive: false
+
+Name: completion_ada
+Description: openai send highlighted text as a prompt to ada
+Binding: completion_ada
+Interactive: false
+
+Name: completion_davinci
+Description: openai send highlighted text as a prompt to davinci
+Binding: completion_davinci
+Interactive: false

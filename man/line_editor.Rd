@@ -19,5 +19,5 @@ This function sends the selected text to a gpt-3.5-turbo chat model. The system 
 
 You are an editorial writing assistant. Your task is to edit the content you receive for improved clarity, flow, and reduced word count.
 
-The model receives the highlighted text, generates a response following the prompt, and returns to the new suggested text to the console.
+The model receives the highlighted text, generates a response following the prompt, and returns the new suggested text to the console.
 }
