@@ -195,5 +195,44 @@ completion_davinci <- function(){
 }
 
 
+#' Send highlighted text as completion prompt to gpt-3.5-turbo
+#'
+#' This is an RStudio addin function that should become available after the package is installed.
+#'
+#' Highlight text in an editor window while using Rstudio, then select the addin from the drop-down menu.
+#'
+#' This function sends the selected text to a gpt-3.5-turbo model
+#'
+#' The model receives the highlighted text, generates a completion prompt, and returns the generated text to the console.
+#'
+#' @return string to console
+#' @export
+completion_chat <- function(){
+
+  # get selected text
+  selected_text <- rstudioapi::selectionGet()
+
+  message("Submitting query...")
+
+  # run the api call to openai
+  gpt <- openai::create_chat_completion(
+    model = "gpt-3.5-turbo",
+    messages = list(
+      list(
+        "role" = "system",
+        "content" = "You are a helpful assistant."
+      ),
+      list(
+        "role" = "user",
+        "content" = selected_text$value
+      )
+    )
+  )
+
+  # print the results to the console
+  print(cat(gpt$choices$message.content))
+}
+
+
 
 
