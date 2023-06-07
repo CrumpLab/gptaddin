@@ -1,0 +1,10 @@
+Package: gptaddin
+Type: Package
+Title: Rstudio addins for openai api
+Version: 0.1.0
+Author: Matt Crump
+Maintainer: Matt Crump <mcrump@brookyln.cuny.edu>
+Description: Rstudio addins for openai api
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true

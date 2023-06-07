@@ -1,0 +1,4 @@
+Name: line_editor
+Description: openai edits text for clarity, flow, and brevity
+Binding: line_editor
+Interactive: false
