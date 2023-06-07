@@ -17,8 +17,11 @@
 #' @examples
 line_editor <- function(){
 
+
   # get selected text
   selected_text <- rstudioapi::selectionGet()
+
+  message("Submitting query...")
 
   # run the api call to openai
   gpt <- openai::create_chat_completion(
