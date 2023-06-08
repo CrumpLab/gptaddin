@@ -38,7 +38,7 @@ line_editor <- function(){
   )
 
   # print the results to the console
-  print(gpt$choices$message.content)
+  print(cat(gpt$choices$message.content))
 }
 
 
@@ -82,7 +82,7 @@ points_to_prose <- function(){
   )
 
   # print the results to the console
-  print(gpt$choices$message.content)
+  print(cat(gpt$choices$message.content))
 }
 
 
@@ -195,7 +195,7 @@ completion_davinci <- function(){
 }
 
 
-#' Send highlighted text as completion prompt to gpt-3.5-turbo
+#' Send highlighted text as a completion prompt to gpt-3.5-turbo
 #'
 #' This is an RStudio addin function that should become available after the package is installed.
 #'
@@ -231,6 +231,53 @@ completion_chat <- function(){
 
   # print the results to the console
   print(cat(gpt$choices$message.content))
+}
+
+#' Send highlighted text to gpt-3.5-turbo output to doc
+#'
+#' This is an RStudio addin function that should become available after the package is installed.
+#'
+#' Highlight text in an editor window while using Rstudio, then select the addin from the drop-down menu.
+#'
+#' This function sends the selected text to a gpt-3.5-turbo model and returns the output to the document, not the console.
+#'
+#' The selected text is replaced with the original text, a new line, and the response from the model.
+#'
+#' @return string to console
+#' @export
+chat_to_doc <- function(){
+
+  # get document id and selection range
+  active_context <- rstudioapi::getActiveDocumentContext()
+  #print(active_context)
+
+  # get selected text
+  selected_text <- rstudioapi::selectionGet()
+
+  message("Submitting query...")
+
+  #run the api call to openai
+  gpt <- openai::create_chat_completion(
+    model = "gpt-3.5-turbo",
+    messages = list(
+      list(
+        "role" = "system",
+        "content" = "You are a helpful assistant."
+      ),
+      list(
+        "role" = "user",
+        "content" = selected_text$value
+      )
+    )
+  )
+
+  # insert original selection plus response back into document
+  new_text <- gpt$choices$message.content
+  insert_text <- paste(selected_text,"\n", new_text, sep="\n")
+
+  rstudioapi::insertText(location = active_context$selection[[1]]$range,
+                         text = insert_text,
+                         id = active_context$id)
 }
 
 

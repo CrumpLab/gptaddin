@@ -27,3 +27,8 @@ Name: completion_chat
 Description: openai send highlighted text as a chatbot prompt to gpt-3.5-turbo
 Binding: completion_chat
 Interactive: false
+
+Name: chat_to_doc
+Description: openai send highlighted text as a chatbot prompt to gpt-3.5-turbo
+Binding: chat_to_doc
+Interactive: false

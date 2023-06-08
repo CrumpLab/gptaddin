@@ -1,0 +1,79 @@
+---
+title: "Examples"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BKatbHBCCc0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+## Line Editor
+
+Select some text in RStudio, and then run the line editor addin. A revised version of the selected text will be printed to the console. 
+
+----
+To use the line editor addin in RStudio, simply select the text you want to edit and run the addin. The console will then show a revised version of your selected text that takes into account clarity, flow, and reduced word count. Remember to use an active voice while editing.
+----
+
+## Points to Prose                  
+
+Select some bullet points in RStudio, and then run the points to prose addin. The points are expanded to longform prose and printed to the console. 
+
+- Cats are animals
+- Cats can have different personalities
+- My cat's eat breakfast twice a day.
+
+------
+
+Cats are a species of four-legged animals that are commonly kept as pets by humans. They come in various breeds and can exhibit different personalities and behaviors that make each one of them unique. They can be aloof and independent or affectionate and playful, depending on their upbringing and environment.
+
+While most cats are known to have small appetites and prefer to nibble on small amounts of food throughout the day, some may require specific feeding times to maintain their health and energy levels. It is not uncommon for a cat's daily meals to be divided into several smaller portions.
+
+In the case of your cat, they appear to have two breakfasts a day as part of their daily routine. It is important to ensure that your cat's dietary needs are met and that they have access to fresh water at all times.
+
+
+------
+
+## Summarize main points
+
+Select some text in RStudio, and then run the summarize main points addin. Bullet points about the selected text will be printed to the console.
+
+We show that theories of response scheduling for sequential action can be discriminated on the basis of their predictions for the dynamic range of response set activation during sequencing, which refers to the momentary span of activation states for completed and to-be-completed actions in a response set. In particular, theories allow that future actions in a plan are partially activated, but differ with respect to the width of the range, which refers to the number of future actions that are partially activated. Similarly, theories differ on the width of the range for recently completed actions that are assumed to be rapidly deactivated or gradually deactivated in a passive fashion. We validate a new typing task for measuring momentary activation states of actions across a response set during action sequencing. Typists recruited from Amazon Mechanical Turk copied a paragraph by responding to a “go” signal that usually cued the next letter but sometimes cued a near-past or future letter (n-3, n-2, n-1, 0, n-2, n-3). The activation states for producing letters across go-signal positions can be inferred from RTs and errors. In general, we found evidence of graded parallel activation for future actions and rapid deactivation of more distal past actions.
+
+
+-----
+
+- Theories for sequential action response scheduling can be distinguished by their predictions for the dynamic range of response set activation during sequencing.
+
+- The dynamic range refers to the momentary span of activation states for completed and to-be-completed actions in a response set.
+
+- Theories differ in the width of the range for partially-activated future actions and rapidly or gradually deactivated past actions.
+
+- The new typing task effectively measured momentary activation states of actions across a response set during action sequencing.
+
+- Evidence suggests graded parallel activation for future actions and rapid deactivation of distal past actions during the task.
+
+-----
+
+## Chat to doc
+
+Selected text in RStudio is sent as a prompt to gpt-3.5-turbo. The selected text is replaced with the original text, and the response from the model. The text is returned inside the Rstudio document, not inside the console. 
+
+Explain how many cats it takes to wake someone up in the morning for breakfast.
+
+
+The number of cats it takes to wake someone up in the morning for breakfast can vary depending on the person's sleep patterns, the personality of the cats, and how loud or persistent they are in meowing or purring for their food. In general, one or two cats may be enough to wake someone up, especially if they are hungry and vocal. However, some cats may be more subtle in their demands or may wait patiently for their owner to wake up on their own. Ultimately, it depends on the individual situation.
+
+
+
+
