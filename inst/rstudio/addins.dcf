@@ -3,6 +3,11 @@ Description: openai edits text for clarity, flow, and brevity
 Binding: line_editor
 Interactive: false
 
+Name: gpt_edit
+Description: openai spellcheck and editor with options, select text
+Binding: gpt_edit
+Interactive: false
+
 Name: line_editor_markdown
 Description: editor returns changes in markdown
 Binding: line_editor_markdown

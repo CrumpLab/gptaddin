@@ -41,6 +41,71 @@ line_editor <- function(){
   print(cat(gpt$choices$message.content))
 }
 
+#' Get suggested line edits
+#'
+#' This is an RStudio addin function that should become available after the package is installed.
+#'
+#' Highlight text in an editor window while using Rstudio, then select the addin from the drop-down menu. Allows a selection of different editing prompts from the console before sending.
+#'
+#' This function sends the selected text to a gpt-3.5-turbo chat model. The system prompt is:
+#'
+#' You are an editorial writing assistant. Your task is to edit the content you receive for improved clarity, flow, and reduced word count.
+#'
+#' The model receives the highlighted text, generates a response following the prompt, and returns the new suggested text to the console.
+#'
+#' @return string to console
+#' @export
+#'
+gpt_edit <- function(){
+
+  # get selected text
+  selected_text <- rstudioapi::selectionGet()
+
+  user_choice <- menu(
+    choices = c(
+      "Basic spelling and grammar",
+      "Flow, reduced word count",
+      "Compress text",
+      "Write custom prompt: "
+    ),
+    title = "Choose editing prompt"
+  )
+
+  if( user_choice == 1){
+    system_content <- "You are an editorial writing assistant. Edit the text for spelling and grammar. Don't change the meaning or the words."
+  }
+
+  if( user_choice == 2){
+    system_content <- "You are an editorial writing assistant. Your task is to edit the content you receive for improved clarity, flow, and reduced word count. You should respect the original style of the input text and use an active voice."
+  }
+
+  if( user_choice == 3){
+    system_content <- "You are a text compressor. Compress the meaning of the text into as few words as possible, make it so that you can understand the text even if it is not readable to a human."
+  }
+
+  if( user_choice == 4){
+    system_content <- readline(prompt = "Enter your prompt")
+  }
+
+  # run the api call to openai
+  gpt <- openai::create_chat_completion(
+    model = "gpt-3.5-turbo",
+    messages = list(
+      list(
+        "role" = "system",
+        "content" = system_content
+      ),
+      list(
+        "role" = "user",
+        "content" = selected_text$value
+      )
+    )
+  )
+
+  # print the results to the console
+  print(cat(gpt$choices$message.content))
+}
+
 #' Get suggested line edits with markdown flagged changes
 #'
 #' This is an RStudio addin function that should become available after the package is installed.
@@ -397,6 +462,8 @@ continue_chat <- function(){
     "role" = gpt$choices$message.role,
     "content" = gpt$choices$message.content
   )
+
+  print(paste("Prompt tokens used: ",my_chat$history[[length(my_chat$history)]]$usage$prompt_tokens))
 
   new_text <- gpt$choices$message.content
   insert_text <- paste(selected_text,"\n", new_text, sep="\n")

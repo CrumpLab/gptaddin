@@ -269,6 +269,32 @@ thoughts, so don’t be afraid to experiment with different techniques
 until you find what works best for you.</p>
 </div>
 </div>
+<div class="section level2">
+<h2 id="gpt_edit">gpt_edit<a class="anchor" aria-label="anchor" href="#gpt_edit"></a>
+</h2>
+<p>Note: I copied in the function I wrote and asked GPT to “Explain how
+this R function works as an Rstudio addin so that someone else could use
+it.”</p>
+<p>This is an R function called <code>gpt_edit</code> that allows the
+user to edit a selected text using GPT-3. It is designed as an RStudio
+addin, which means that it can only be used from within RStudio.</p>
+<p>When the function is called, it first gets the selected text within
+RStudio using <code><a href="https://rstudio.github.io/rstudioapi/reference/selections.html" class="external-link">rstudioapi::selectionGet()</a></code>. It then presents
+the user with a menu to choose from three different editing prompts:
+“Basic spelling and grammar”, “Flow, reduced word count”, or “Write
+custom prompt”.</p>
+<p>Depending on the user’s choice, the function sets a
+<code>system_content</code> variable to a specific editing prompt. If
+the user chooses option 3, they are prompted to enter their own custom
+prompt.</p>
+<p>After the user selects their editing prompt, the function makes an
+API call to GPT-3 using the <code><a href="https://irudnyts.github.io/openai/reference/create_chat_completion.html" class="external-link">openai::create_chat_completion</a></code>
+function. This sends the selected text along with the chosen editing
+prompt to GPT-3 for editing.</p>
+<p>Finally, the edited text is printed to the console using
+<code>cat</code> and <code>print</code>. This allows the user to see the
+edited text and make any necessary changes.</p>
+</div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
 </div>
