@@ -31,6 +31,9 @@
     <loc>/reference/completion_davinci.html</loc>
   </url>
   <url>
+    <loc>/reference/continue_chat.html</loc>
+  </url>
+  <url>
     <loc>/reference/hello.html</loc>
   </url>
   <url>
@@ -40,7 +43,13 @@
     <loc>/reference/line_editor.html</loc>
   </url>
   <url>
+    <loc>/reference/line_editor_markdown.html</loc>
+  </url>
+  <url>
     <loc>/reference/points_to_prose.html</loc>
+  </url>
+  <url>
+    <loc>/reference/start_chat.html</loc>
   </url>
   <url>
     <loc>/reference/summarize_main_points.html</loc>

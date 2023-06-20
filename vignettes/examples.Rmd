@@ -88,6 +88,62 @@ Explain the concept of co-variation in 50 words.
 
 Woo-hoo! Co-what now? Let me put it this way, doc. Co-variation is when two things are connected. They go together like peanut butter and jelly, Bugs and I, or a duck and water. When one thing changes, the other thing changes too. Got it? 
 
+## Chat with memory
+
+The above functions send a single prompt with no context from any previous prompt. As a result, chat-like behavior consisting of a back-and-forth series of prompts is not implemented. The `start_chat()` function and `continue_chat` addin provide some of this functionality. These functions could be further improved, especially for scoping purposes.
+
+### start_chat()
+
+This function sends a single prompt assigning the system role as a helpful assistant. This is not an add-in, and the function is run from the console. Running the function also creates a list object in the global environment called `my_chat`. There are two lists inside that keep track of the message history. `my_chat$message` is a list of the message history. The message history grows as the chat continues. However, there is no error-checking, such as ensuring that token limits have not been reached.
+
+### continue_chat()
+
+This function is like `chat_to_doc`. To use it, select text in the editor and then choose the `continue_chat` add-in. The selected text is appended to the message history in `my_chat$message`. The entire message history, including the newly added text, will serve as the prompt to OpenAI. This will provide the context of the entire chat, thus enabling the assistant to provide responses that are dependent on the previous chat.
+
+Notes: I haven't added any formatting to distinguish model response from my own text.
+
+Future development notes: 
+
+- Try using the the larger context models (16k)
+- When the message history nears the prompt token limit, ask for a summary of the entire chat, then use the summary of the chat as the seed for a new chat. This should provide a larger range of somewhat continuous chat like behavior.
+
+
+### Example usage
+
+```{r, eval=FALSE}
+gptaddin::start_chat()
+
+#> Thank you for your kind words! How may I assist you today?
+```
+
+I'm testing out the chat, what should we talk about?
+
+
+Well, there are many interesting topics we could talk about! What are some of your interests?
+
+What are you interests, I'll choose from those.
+
+
+As an AI language model, I don't have personal interests like humans, but I can discuss a wide range of topics. For example, we could talk about current events, technology, science, history, or even popular culture. What do you think?
+
+I think a lot of things.
+
+
+That's great! Is there anything in particular that you would like help with?
+
+How to think more things sometimes and less things other times. How to be in control of the number of things I'm thinking about.
+
+
+That's a great question. One way to control the number of things you're thinking about is to practice mindfulness meditation. This involves focusing your attention on your breath or an object, and when your mind starts to wander, you simply bring your focus back to your breath or object. This practice trains your brain to be more aware of your thoughts and can help you let go of distractions and decrease the number of things you're thinking about.
+
+Another useful technique is to organize your tasks and prioritize them so that you focus on the most important ones first. This can help you break down your to-do list into manageable chunks and reduce the feeling of overwhelm. You could also try setting specific times throughout the day to focus on certain tasks or thoughts, and then set aside other times when you purposely avoid thinking about anything work-related or distracting.
+
+Remember, it's important to find what works best for you and your unique situation. Everyone has different strategies for managing their thoughts, so don't be afraid to experiment with different techniques until you find what works best for you.
+
+
+
+
+
 
 
 

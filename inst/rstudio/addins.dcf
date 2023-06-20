@@ -3,6 +3,11 @@ Description: openai edits text for clarity, flow, and brevity
 Binding: line_editor
 Interactive: false
 
+Name: line_editor_markdown
+Description: editor returns changes in markdown
+Binding: line_editor_markdown
+Interactive: false
+
 Name: points_to_prose
 Description: openai lengthen pointform to longform prose
 Binding: points_to_prose
@@ -32,3 +37,8 @@ Name: chat_to_doc
 Description: openai send highlighted text as a chatbot prompt to gpt-3.5-turbo
 Binding: chat_to_doc
 Interactive: false
+
+Name: continue_chat
+Description: openai send highlighted text as a chatbot prompt to gpt-3.5-turbo
+Binding: continue_chat
+Interactive: true

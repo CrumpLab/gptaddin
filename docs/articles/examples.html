@@ -186,6 +186,89 @@ when two things are connected. They go together like peanut butter and
 jelly, Bugs and I, or a duck and water. When one thing changes, the
 other thing changes too. Got it?</p>
 </div>
+<div class="section level2">
+<h2 id="chat-with-memory">Chat with memory<a class="anchor" aria-label="anchor" href="#chat-with-memory"></a>
+</h2>
+<p>The above functions send a single prompt with no context from any
+previous prompt. As a result, chat-like behavior consisting of a
+back-and-forth series of prompts is not implemented. The
+<code><a href="../reference/start_chat.html">start_chat()</a></code> function and <code>continue_chat</code> addin
+provide some of this functionality. These functions could be further
+improved, especially for scoping purposes.</p>
+<div class="section level3">
+<h3 id="start_chat">start_chat()<a class="anchor" aria-label="anchor" href="#start_chat"></a>
+</h3>
+<p>This function sends a single prompt assigning the system role as a
+helpful assistant. This is not an add-in, and the function is run from
+the console. Running the function also creates a list object in the
+global environment called <code>my_chat</code>. There are two lists
+inside that keep track of the message history.
+<code>my_chat$message</code> is a list of the message history. The
+message history grows as the chat continues. However, there is no
+error-checking, such as ensuring that token limits have not been
+reached.</p>
+</div>
+<div class="section level3">
+<h3 id="continue_chat">continue_chat()<a class="anchor" aria-label="anchor" href="#continue_chat"></a>
+</h3>
+<p>This function is like <code>chat_to_doc</code>. To use it, select
+text in the editor and then choose the <code>continue_chat</code>
+add-in. The selected text is appended to the message history in
+<code>my_chat$message</code>. The entire message history, including the
+newly added text, will serve as the prompt to OpenAI. This will provide
+the context of the entire chat, thus enabling the assistant to provide
+responses that are dependent on the previous chat.</p>
+<p>Notes: I haven’t added any formatting to distinguish model response
+from my own text.</p>
+<p>Future development notes:</p>
+<ul>
+<li>Try using the the larger context models (16k)</li>
+<li>When the message history nears the prompt token limit, ask for a
+summary of the entire chat, then use the summary of the chat as the seed
+for a new chat. This should provide a larger range of somewhat
+continuous chat like behavior.</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="example-usage">Example usage<a class="anchor" aria-label="anchor" href="#example-usage"></a>
+</h3>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">gptaddin</span><span class="fu">::</span><span class="fu"><a href="../reference/start_chat.html">start_chat</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; Thank you for your kind words! How may I assist you today?</span></span></code></pre></div>
+<p>I’m testing out the chat, what should we talk about?</p>
+<p>Well, there are many interesting topics we could talk about! What are
+some of your interests?</p>
+<p>What are you interests, I’ll choose from those.</p>
+<p>As an AI language model, I don’t have personal interests like humans,
+but I can discuss a wide range of topics. For example, we could talk
+about current events, technology, science, history, or even popular
+culture. What do you think?</p>
+<p>I think a lot of things.</p>
+<p>That’s great! Is there anything in particular that you would like
+help with?</p>
+<p>How to think more things sometimes and less things other times. How
+to be in control of the number of things I’m thinking about.</p>
+<p>That’s a great question. One way to control the number of things
+you’re thinking about is to practice mindfulness meditation. This
+involves focusing your attention on your breath or an object, and when
+your mind starts to wander, you simply bring your focus back to your
+breath or object. This practice trains your brain to be more aware of
+your thoughts and can help you let go of distractions and decrease the
+number of things you’re thinking about.</p>
+<p>Another useful technique is to organize your tasks and prioritize
+them so that you focus on the most important ones first. This can help
+you break down your to-do list into manageable chunks and reduce the
+feeling of overwhelm. You could also try setting specific times
+throughout the day to focus on certain tasks or thoughts, and then set
+aside other times when you purposely avoid thinking about anything
+work-related or distracting.</p>
+<p>Remember, it’s important to find what works best for you and your
+unique situation. Everyone has different strategies for managing their
+thoughts, so don’t be afraid to experiment with different techniques
+until you find what works best for you.</p>
+</div>
+</div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
 </div>
