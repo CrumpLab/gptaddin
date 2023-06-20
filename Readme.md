@@ -16,6 +16,12 @@ I'm blogging about the process of making this package here:
 
 <https://crumplab.com/blog/770_rstudio_gpt/>
 
+## Other examples of using GPT in RStudio
+
+- [gptstudio](https://github.com/MichelNivard/gptstudio)
+
+
+
 
 
 
