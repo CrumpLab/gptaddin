@@ -13,3 +13,11 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+Imports:
+ rstudioapi,
+ V8, 
+ dplyr, 
+ purrr, 
+ shiny, 
+ stringr,
+ knitr

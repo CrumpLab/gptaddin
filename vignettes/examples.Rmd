@@ -155,6 +155,11 @@ After the user selects their editing prompt, the function makes an API call to G
 Finally, the edited text is printed to the console using `cat` and `print`. This allows the user to see the edited text and make any necessary changes.
 
 
+## run_grammar_checker
+
+`run_grammar_checker()` takes a file as an input, and opens a shiny app. The document is parsed at the sentence or paragraph level. A user can manually go through each piece of text and choose to submit it to OpenAI. Very bare bones. This function will likely change. I'm sharing it mainly as an example, and will be modifying it for my own use-cases.
+
+
 
 
 
