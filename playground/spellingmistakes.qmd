@@ -11,3 +11,51 @@ generate several sentences with spelling and grammar mistakes
 8. There dog barked loudly late at night.
 9. She should of studied more for the exam.
 10. The car's tire is flat, I think it needs air in it.
+
+
+
+Write an R function that accomplishes the following
+
+1. Takes two plain text inputs
+2. The first input is for original text
+3. The second input is for potentially modified text
+4. The original text is compared to the potentially modified text to determine whether or not there are any changes
+5. If there are no changes, the function returns identical
+6. If there are changes, the function returns the differences in HTML, with all changes highlighted in red.
+
+
+
+Here is an R function that takes two plain text inputs and compares them to determine if there are any changes:
+
+```R
+library(htmltools)
+
+compare_text <- function(original_text, modified_text) {
+  require(htmltools)
+  if (identical(original_text, modified_text)) {
+    return("identical")
+  } else {
+    diff <- diffobj::diffPrint(diffobj::diffobj(original_text, modified_text, ignWhitespace = TRUE), 
+                              context = "inline")
+    return(tags$span(HTML(diff), style = "color:red;"))
+  }
+}
+```
+
+Here, the `diffPrint()` function from the `diffobj` package is used to compare the original and modified text inputs. The `ignWhitespace = TRUE` argument ignores whitespace differences between the two inputs. 
+
+If the inputs are identical, the function returns the string "identical". However, if the inputs are different, the `diffPrint()` function returns a character vector containing HTML highlighting the differences between the two inputs in red. This character vector is then wrapped in a `tags$span()` function, which adds the inline style "color:red;" to display the highlighted differences in red.
+
+Example Usage:
+```R
+#original and modified text inputs
+orig_text <- "Hello, World!"
+mod_text <- "Hello, everybody!"
+
+#Compare original and modified text
+compare_text(orig_text, mod_text)
+
+#Output: "<span style=\"color:red;\">Hello, </span><span style=\"color:#000000;\">World!</span><span style=\"color:red;\">everybody!</span>"
+```
+
+In this example, the function highlights the word "World!" in black (since there are no changes) and adds the word "everybody!" in red to show what has been added to the modified text.

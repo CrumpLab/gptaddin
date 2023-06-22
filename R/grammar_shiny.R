@@ -4,15 +4,15 @@ check_grammar_gpt <- function(text_to_edit,user_choice){
   selected_text <- text_to_edit
 
   if( user_choice == "spelling_grammar"){
-    system_content <- "You are an editorial writing assistant. Edit the text for spelling and grammar. Don't change the meaning of the words. Compare the edited text with the original text. If the edited text is different from the original text, then return the results in HTML and highlight any changes in red. If the edited text is the same as the original text, then return OK."
+    system_content <- "You are an editorial writing assistant. Edit the text for spelling and grammar. Don't change the meaning of the words."
   }
 
   if( user_choice == "word_count"){
-    system_content <- "You are an editorial writing assistant. Your task is to edit the content you receive for reduced word count"
+    system_content <- "You are an editorial writing assistant. Edit the text to reduce word count without changing the meaning."
   }
 
   if( user_choice == "clarity"){
-    system_content <- "You are an editorial writing assistant. Your task is to edit the content you receive for clarity"
+    system_content <- "You are an editorial writing assistant. Edit the text to improve clarity and flow."
   }
 
   gpt <- openai::create_completion(
@@ -25,6 +25,17 @@ check_grammar_gpt <- function(text_to_edit,user_choice){
   #print(gpt) error-checking
 
   return(gpt$choices$text)
+}
+
+compare_text <- function(original_text, modified_text) {
+  if (identical(original_text, modified_text)) {
+    return("identical")
+  } else {
+      as.character(
+        diffobj::diffChr(original_text, modified_text, format="html",
+                           style=list(html.output="diff.w.style"))
+      )
+  }
 }
 
 # These functions were inspired by, and rewritten from https://github.com/jasdumas/gramr
@@ -129,8 +140,9 @@ run_grammar_checker <- function(path, choose_token_level = "sentences"){
         "Submitting text..."
       })
       suggestion <- check_grammar_gpt(sentences[counter],input$options)
+      diff <- compare_text(sentences[counter],suggestion)
       output$text <- renderUI({
-        HTML(suggestion)
+        HTML(diff)
       })
     })
 
