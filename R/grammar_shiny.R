@@ -4,7 +4,7 @@ check_grammar_gpt <- function(text_to_edit,user_choice){
   selected_text <- text_to_edit
 
   if( user_choice == "spelling_grammar"){
-    system_content <- "You are an editorial writing assistant. Edit the text for spelling and grammar. Don't change the meaning or the words. If the edited sentence is different from the original, then return the results in HTML and highlight any changed words in red. If the sentence does not need to be changed, then return OK."
+    system_content <- "You are an editorial writing assistant. Edit the text for spelling and grammar. Don't change the meaning of the words. Compare the edited text with the original text. If the edited text is different from the original text, then return the results in HTML and highlight any changes in red. If the edited text is the same as the original text, then return OK."
   }
 
   if( user_choice == "word_count"){
@@ -13,10 +13,6 @@ check_grammar_gpt <- function(text_to_edit,user_choice){
 
   if( user_choice == "clarity"){
     system_content <- "You are an editorial writing assistant. Your task is to edit the content you receive for clarity"
-  }
-
-  if( user_choice == 4){
-    system_content <- readline(prompt = "Enter your prompt")
   }
 
   gpt <- openai::create_completion(
