@@ -6,7 +6,7 @@
 
 The purpose of this package is to create RStudio addins for interfacing with the [OpenAI API](https://openai.com/) through the [openai R library](https://github.com/irudnyts/openai). 
 
-The add-ins are intended to provide writing assistant functions, such as taking selected text and having a GPT model suggest edits.
+The add-ins are intended to provide writing assistant functions, such as taking selected text in the RStudio editor and having a GPT model return edits.
 
 This is an experimental project undergoing a short spurt of development for my personal use.
 

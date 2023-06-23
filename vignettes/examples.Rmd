@@ -201,5 +201,5 @@ Currently the shiny app does not change the original document, and any suggested
 
 [x] - set default model to gpt-3.5-turbo which is cheaper and good enough.
 
-
+[x] - add a quick copy button that puts the suggested edit into the clipboard.
 

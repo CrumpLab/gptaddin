@@ -180,12 +180,16 @@ run_grammar_checker <- function(path, choose_token_level = "paragraphs"){
                       width = 500,
                       resize = "both"),
         h3("Suggestion"),
-        htmlOutput(outputId = "suggested_text")
+        htmlOutput(outputId = "suggested_text"),
+        actionButton("copy", "Copy to clipboard")
       )
     )
   )
 
   server <- function(input, output, session) {
+
+    ## Initialize Reactive variables ####
+    values <- reactiveValues()
 
     # go to next sentence
     observeEvent(input$nextS, {
@@ -216,18 +220,23 @@ run_grammar_checker <- function(path, choose_token_level = "paragraphs"){
       #print(input$model)
 
       #pass text to API and get result
-      suggestion <- check_grammar_gpt(sentences[counter],
+      values$suggestion <- check_grammar_gpt(sentences[counter],
                                       input$options,
                                       input$model)
 
       # find differences between original and modified text
-      diff_1 <- compare_text(sentences[counter],suggestion)
+      diff_1 <- compare_text(sentences[counter],values$suggestion)
 
       # display differences
       output$suggested_text <- renderUI({
         HTML(diff_1)
       })
 
+    })
+
+    # copy to clipboard
+    observeEvent(input$copy, {
+      clipr::write_clip(values$suggestion)
     })
 
     # exit the app
