@@ -155,9 +155,9 @@ run_grammar_checker <- function(path, choose_token_level = "sentences"){
 
     # submit sentence for checking to OpenAI API
     observeEvent(input$submit, {
-      print(sentences[counter])
-      print(input$options)
-      print(input$model)
+      #print(sentences[counter])
+      #print(input$options)
+      #print(input$model)
 
       #pass text to API and get result
       suggestion <- check_grammar_gpt(sentences[counter],
