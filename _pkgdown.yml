@@ -1,4 +1,8 @@
-url: ~
+url: https://crumplab.com/gptaddin
 template:
   bootstrap: 5
+  opengraph:
+    img: logo.png
 
+development:
+  mode: unreleased

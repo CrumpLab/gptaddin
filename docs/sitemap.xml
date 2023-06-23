@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://crumplab.com/gptaddin/404.html</loc>
   </url>
   <url>
-    <loc>/articles/examples.html</loc>
+    <loc>https://crumplab.com/gptaddin/articles/examples.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://crumplab.com/gptaddin/articles/index.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://crumplab.com/gptaddin/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://crumplab.com/gptaddin/index.html</loc>
   </url>
   <url>
-    <loc>/readme.html</loc>
+    <loc>https://crumplab.com/gptaddin/readme.html</loc>
   </url>
   <url>
-    <loc>/reference/chat_to_doc.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/chat_to_doc.html</loc>
   </url>
   <url>
-    <loc>/reference/check_grammar_gpt.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/check_grammar_gpt.html</loc>
   </url>
   <url>
-    <loc>/reference/compare_text.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/compare_text.html</loc>
   </url>
   <url>
-    <loc>/reference/completion_ada.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/completion_ada.html</loc>
   </url>
   <url>
-    <loc>/reference/completion_chat.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/completion_chat.html</loc>
   </url>
   <url>
-    <loc>/reference/completion_davinci.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/completion_davinci.html</loc>
   </url>
   <url>
-    <loc>/reference/continue_chat.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/continue_chat.html</loc>
   </url>
   <url>
-    <loc>/reference/gpt_edit.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/gpt_edit.html</loc>
   </url>
   <url>
-    <loc>/reference/hello.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/hello.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/line_editor.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/line_editor.html</loc>
   </url>
   <url>
-    <loc>/reference/line_editor_markdown.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/line_editor_markdown.html</loc>
   </url>
   <url>
-    <loc>/reference/parse_rmd.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/parse_rmd.html</loc>
   </url>
   <url>
-    <loc>/reference/points_to_prose.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/points_to_prose.html</loc>
   </url>
   <url>
-    <loc>/reference/run_grammar_checker.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/run_grammar_checker.html</loc>
   </url>
   <url>
-    <loc>/reference/start_chat.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/start_chat.html</loc>
   </url>
   <url>
-    <loc>/reference/summarize_main_points.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/summarize_main_points.html</loc>
   </url>
   <url>
-    <loc>/reference/write_function_doc.html</loc>
+    <loc>https://crumplab.com/gptaddin/reference/write_function_doc.html</loc>
   </url>
 </urlset>
