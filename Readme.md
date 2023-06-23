@@ -25,7 +25,7 @@ See the example page for some more explanation and ongoing dev notes.
 <https://crumplab.com/gptaddin/articles/examples.html>
 
 
-## Other examples of using GPT in RStudio
+### Other examples of using GPT in RStudio
 
 - [gptstudio](https://github.com/MichelNivard/gptstudio)
 
