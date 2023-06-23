@@ -4,6 +4,8 @@ template:
   bootstrap: 5
   opengraph:
     img: logo.png
+  params:
+    ganalytics: G-1ESTW4QSDH
 
 development:
   mode: unreleased

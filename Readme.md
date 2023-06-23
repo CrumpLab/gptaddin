@@ -26,7 +26,7 @@ See the example page for some more explanation and ongoing dev notes.
 
 ### Usage notes
 
-I don't currently have plans to make this package ready for a larger audience to install and use without hassle. There are several privacy concerns to have about sending data to OpenAI. The behavior of LLMs can be unstable. IMO, interacting with these tools requires a great deal of human supervision. For example, in using the functions in this package myself, I'm rarely getting results that are useful to me straightaway. And, the reason I'm making these functions is so that I personally understand what I am sending and receiving, and that I have programmatic control over what I'm doing. For these reasons, as I mentioned earlier, I'm not suggesting that anyone install and use this package. 
+I don't currently have plans to make this package ready for a larger audience to install and use without any hassle. There are several privacy concerns to consider when sending data to OpenAI, and the behavior of LLMs can be unstable. In my opinion, interacting with these tools requires a great deal of human supervision. For example, while using the functions in this package myself, I rarely get results that are useful straight away. The reason I'm creating these functions is to personally understand what I am sending and receiving, as well as to have programmatic control over my actions. For these reasons, as I mentioned earlier, I'm not suggesting that anyone should install and use this package.
 
 In case this rough scratchpad of a package is useful for others, here's a quick rundown.
 
