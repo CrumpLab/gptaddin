@@ -1,6 +1,6 @@
 Package: gptaddin
 Type: Package
-Title: RStudio addins for openai api
+Title: RStudio addins for OpenAI api
 Version: 0.1.0
 URL: https://github.com/CrumpLab/gptaddin
 Authors@R: 
@@ -9,7 +9,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "mcrump@brooklyn.cuny.edu",
            comment = c(ORCID = "0000-0002-5612-0090"))
-Description: Rstudio addins for openai api
+Description: Rstudio addins and shiny app for using OpenAI api as a writing assistant.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
