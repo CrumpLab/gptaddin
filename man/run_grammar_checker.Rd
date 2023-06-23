@@ -4,12 +4,12 @@
 \alias{run_grammar_checker}
 \title{Start grammar checker shiny application}
 \usage{
-run_grammar_checker(path, choose_token_level = "sentences")
+run_grammar_checker(path, choose_token_level = "paragraphs")
 }
 \arguments{
 \item{path}{file to check}
 
-\item{choose_token_level}{string "sentences" or "paragraphs", defaults to sentences. The document is parsed into individual sentences or paragraphs.}
+\item{choose_token_level}{string "sentences" or "paragraphs", defaults to paragraphs. The document is parsed into individual sentences or paragraphs.}
 }
 \value{
 a shiny app is launched

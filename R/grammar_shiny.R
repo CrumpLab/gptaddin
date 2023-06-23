@@ -95,7 +95,7 @@ compare_text <- function(original_text, modified_text) {
 #' # don't run
 #' # parse_rmd()
 #' @export
-parse_rmd <- function(file,token_level="sentences"){
+parse_rmd <- function(file,token_level="paragraphs"){
 
   # Read in the R Markdown file
   rmd_file <- readLines(file)
@@ -128,14 +128,14 @@ parse_rmd <- function(file,token_level="sentences"){
 #' The suggested edits may occasionally fail to follow the instructions from the prompt. Some of the models produce very low-quality results, like ada, and babbage.
 #'
 #' @param path file to check
-#' @param choose_token_level string "sentences" or "paragraphs", defaults to sentences. The document is parsed into individual sentences or paragraphs.
+#' @param choose_token_level string "sentences" or "paragraphs", defaults to paragraphs. The document is parsed into individual sentences or paragraphs.
 #' @return a shiny app is launched
 #' @import shiny
 #' @examples
 #' # don't run during tests
 #' # gptaddin::run_grammar_checker("example.rmd")
 #' @export
-run_grammar_checker <- function(path, choose_token_level = "sentences"){
+run_grammar_checker <- function(path, choose_token_level = "paragraphs"){
   sentences <- parse_rmd(path, choose_token_level)
   counter <- 1
 

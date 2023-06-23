@@ -78,12 +78,66 @@
 <p>See the example page for some more explanation and ongoing dev notes.</p>
 <p><a href="https://crumplab.com/gptaddin/articles/examples.html" class="uri">https://crumplab.com/gptaddin/articles/examples.html</a></p>
 <div class="section level3">
+<h3 id="usage-notes">Usage notes<a class="anchor" aria-label="anchor" href="#usage-notes"></a></h3>
+<p>I don’t currently have plans to make this package ready for a larger audience to install and use without hassle. There are several privacy concerns to have about sending data to OpenAI. The behavior of LLMs can be unstable. IMO, interacting with these tools requires a great deal of human supervision. For example, in using the functions in this package myself, I’m rarely getting results that are useful to me straightaway. And, the reason I’m making these functions is so that I personally understand what I am sending and receiving, and that I have programmatic control over what I’m doing. For these reasons, as I mentioned earlier, I’m not suggesting that anyone install and use this package.</p>
+<p>In case this rough scratchpad of a package is useful for others, here’s a quick rundown.</p>
+<p>It is possible to install this package from github, <strong>although, I’m not recommending this option</strong>:</p>
+<pre><code><span><span class="co">#install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"CrumpLab/gptaddin"</span><span class="op">)</span></span></code></pre>
+<p>I imagine it would be more useful to fork, clone, or otherwise download the repo, install it locally, and then modify it as needed for your use case.</p>
+<ol style="list-style-type: decimal"><li>Download the repo to your computer</li>
+<li>Open the .Rproj file in Rstudio</li>
+<li>Install the package from the build tab.</li>
+</ol><p>I’m following the basic skeleton for making R packages using pkgdown. See the <a href="https://r-pkgs.org" class="external-link">R packages book</a> for more info.</p>
+<div class="section level4">
+<h4 id="addins">Addins<a class="anchor" aria-label="anchor" href="#addins"></a></h4>
+<p>Once this package is installed, several addins should become available in Rstudio. See the <a href="https://crumplab.com/gptaddin/articles/examples.html">examples page</a> for some tips on usage.</p>
+<p>I wrote these addins to explore convenient ways to use the OpenAI API while using RStudio. They do things like send highlighted text in the RStudio editor to an LLM, and then print results to the console, or to the editor window.</p>
+<p><strong>This process only works if you have an account with OpenAI, and you have created an API key</strong>.</p>
+<ol style="list-style-type: decimal"><li><p>Create a secret key in openai, copy it and put it somewhere safe. Don’t share it.</p></li>
+<li><p>The <code>openai</code> R library looks for an environment variable called <code>OPENAI_API_KEY</code>, which can be set a <a href="https://irudnyts.github.io/openai/" class="external-link">number of ways</a>.</p></li>
+</ol><p>My strategy was to add a key-value pair directly to the <code>.Renviron</code> file at the user level.</p>
+<pre class="{r}"><code><span><span class="co">#| eval: false</span></span>
+<span></span>
+<span><span class="co"># open the .Renviron file</span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/edit.html" class="external-link">edit_r_environ</a></span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<p>Then edit the file to add the new key-value pair, and restart R.</p>
+<pre class="{r}"><code><span><span class="co">#| eval: false</span></span>
+<span></span>
+<span><span class="co"># add new environment variable to above and save</span></span>
+<span><span class="va">OPENAI_API_KEY</span><span class="op">=</span><span class="va">XXXXXXXXXXXXX</span></span></code></pre>
+<p>After you restart R, you can check if R recognizes the new environment variable:</p>
+<pre class="{r}"><code><span><span class="co">#| eval: false</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"OPENAI_API_KEY"</span><span class="op">)</span></span></code></pre>
+<p><strong>The functions in this package assume the above, and would need to be modified to handle alternate ways of sending the API key.</strong></p>
+</div>
+<div class="section level4">
+<h4 id="writing-addins">Writing addins<a class="anchor" aria-label="anchor" href="#writing-addins"></a></h4>
+<p>Some of the addins in this package may do things you want them to. If not, I suggest writing your own to achieve your desired workflow.</p>
+<p>Documentation for writing custom addins is <a href="https://RStudio.github.io/RStudioaddins/" class="external-link">here</a>. RStudio addins are available from a dropdown menu and/or triggered by hot-key macros.</p>
+<p>The steps for writing addins are:</p>
+<ol style="list-style-type: decimal"><li>Write functions as you normally would do in the R folder. You can see the functions I wrote in <code>R/addins.R</code>
+</li>
+<li>
+<a href="https://rstudio.github.io/rstudioaddins/#registering-addins" class="external-link">Register the functions as addins</a> using a .dcf file placed in <code>inst/rstudio/addins.dcf</code>
+</li>
+<li>Install the R package from the build tab anytime you make changes</li>
+<li>The addins should now be available for use in RStudio</li>
+</ol></div>
+<div class="section level4">
+<h4 id="shiny-app-for-grammar-checking">Shiny app for grammar checking<a class="anchor" aria-label="anchor" href="#shiny-app-for-grammar-checking"></a></h4>
+<p>The newest piece to this package is a Shiny App for grammar checking. I’m starting to get decent results with this approach. The functions for the shiny app are in <code>R/grammar_shiny.R</code>.</p>
+<pre><code><span><span class="fu">gptaddin</span><span class="fu">::</span><span class="fu"><a href="reference/run_grammar_checker.html">run_grammar_checker</a></span><span class="op">(</span><span class="st">"yourfile.qmd"</span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+<div class="section level3">
 <h3 id="other-examples-of-using-gpt-in-rstudio">Other examples of using GPT in RStudio<a class="anchor" aria-label="anchor" href="#other-examples-of-using-gpt-in-rstudio"></a></h3>
 <ul><li><a href="https://github.com/MichelNivard/gptstudio" class="external-link">gptstudio</a></li>
 </ul></div>
 </div>
 
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="copyright">

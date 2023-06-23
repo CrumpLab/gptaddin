@@ -4,7 +4,7 @@
 \alias{parse_rmd}
 \title{Parse RMarkdown documents into sentences or paragraphs}
 \usage{
-parse_rmd(file, token_level = "sentences")
+parse_rmd(file, token_level = "paragraphs")
 }
 \arguments{
 \item{file}{a character vector of the file or path}

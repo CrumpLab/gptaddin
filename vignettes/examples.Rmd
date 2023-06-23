@@ -189,6 +189,8 @@ TO DO:
 
 [] - Allow document to be reparsed at sentence or paragraph level in the app
 
+[x] - set default parsing to paragraph, which seems to give better results anyway.
+
 [] - Allow sending a custom prompt
 
 Currently the shiny app does not change the original document, and any suggested changes need to be done manually by the user. I'm likely to keep it this way for a while. Although I'm starting to get decent results, the frequency of weird stuff is still high, and the whole process needs supervision.
