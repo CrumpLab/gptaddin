@@ -173,7 +173,7 @@ Highlight an R function, then choose this addin and have GPT generate the functi
 
 ## run_grammar_checker
 
-`run_grammar_checker()` takes a file as an input, and opens a shiny app. The document is parsed at the sentence or paragraph level. A user can manually go through each piece of text and choose to submit it to OpenAI. Very bare bones. This function will likely change. I'm sharing it as an example, and will be modifying it for my own use-cases.
+`run_grammar_checker()` takes a text file input and opens a shiny app. The document is parsed at the sentence or paragraph level. A user can manually go through each piece of text and choose to submit it to OpenAI. Very bare bones. This function will likely change. I'm sharing it as an example, and will be modifying it for my own use cases.
 
 At the same time, I'm starting to get very usable results!
 
