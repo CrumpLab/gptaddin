@@ -177,5 +177,7 @@ Currently the shiny app does not change the original document, and any suggested
 
 [] -  take a closer look at tokenizer and reconstructing the original document, consider what I want in terms of adding suggestions back into the origrinal document programmatically.
 
+[] - add a gpt-3.5-turbo option, which should perform similarly to davinci at much less cost. The minor nuisance is that it frequently reverts to being a chatbot...need to find a good prompt that minimizes chatty responses.
+
 
 
