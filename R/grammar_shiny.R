@@ -1,3 +1,16 @@
+# Functions for the Shiny app
+
+#' Edit text for spelling, grammar, word count, clarity using GPT-3
+#'
+#' This function uses GPT-3 to assist in editing text for spelling, grammar, word count, and clarity. It is a companion function for the run grammar checker Shiny app. The function takes in the following parameters:
+#'
+#' @param text_to_edit: The original text that needs editing.
+#' @param user_choice: A character value indicating the type of editing required. Possible values include "spelling_grammar", "word_count", or "clarity".
+#' @param model_type: A character value indicating the GPT-3 model to use, these are supplied by the shiny app.
+#'
+#' @return Returns the edited text as a string.
+#'
+#' @export
 check_grammar_gpt <- function(text_to_edit,user_choice, model_type){
 
   # get selected text
@@ -15,19 +28,54 @@ check_grammar_gpt <- function(text_to_edit,user_choice, model_type){
     system_content <- "You are an editorial writing assistant. Edit the text to improve clarity and flow."
   }
 
-  gpt <- openai::create_completion(
-    model = model_type,
-    prompt = paste(system_content,"\n",selected_text),
-    max_tokens = 1000,
+  if( model_type != "gpt-3.5-turbo"){
+    gpt <- openai::create_completion(
+      model = model_type,
+      prompt = paste(system_content,"\n",selected_text),
+      max_tokens = 1000
+    )
 
-  )
+    model_response <- gpt$choices$text
+  }
+
+  if( model_type == "gpt-3.5-turbo"){
+    gpt <- openai::create_chat_completion(
+      model = "gpt-3.5-turbo",
+      messages = list(
+        list(
+          "role" = "system",
+          "content" = system_content
+        ),
+        list(
+          "role" = "assistant",
+          "content" = "Ok, please send the text."
+        ),
+        list(
+          "role" = "user",
+          "content" = selected_text
+        )
+      )
+    )
+
+    model_response <- gpt$choices$message.content
+  }
 
   #print(gpt) error-checking
-  my_string <- gsub("\n", "", gpt$choices$text)
+  my_string <- gsub("\n", "", model_response)
 
   return(my_string)
 }
 
+#' Compare Two Texts
+#'
+#' This function compares two texts and returns whether they are identical or a diff object from diffobj to visualize the differences in HTML. Used in conjunction with the run grammar checker Shiny app.
+#'
+#' @param original_text A character string representing the original text.
+#' @param modified_text A character string representing the modified text.
+#'
+#' @return Either "identical" if the two texts are identical, or a diff object showing the differences between the two texts.
+#'
+#' @export
 compare_text <- function(original_text, modified_text) {
   if (identical(original_text, modified_text)) {
     return("identical")
@@ -40,9 +88,6 @@ compare_text <- function(original_text, modified_text) {
 }
 
 # These functions were inspired by, and rewritten from https://github.com/jasdumas/gramr
-
-#--------------------------------
-# Functions for the Shiny app
 
 #' Parse RMarkdown documents into sentences or paragraphs
 #' @param file a character vector of the file or path
@@ -71,9 +116,19 @@ parse_rmd <- function(file,token_level="sentences"){
 
 
 #' Start grammar checker shiny application
-#' Start the grammar checker.
-#' @param path the intended filepath
-#' @param choose_token_level string "sentences" or "paragraphs", defaults to sentences
+#'
+#' This shiny app allows a user to manually check each sentence or paragraph in a file using OpenAI LLMs.
+#'
+#' The text file is split into sentences or paragraphs. The user manually goes through each and chooses whether or not to send the current text for suggested feedback.
+#'
+#' The prompts used for each checking option are defined in check_grammar_gpt.
+#'
+#' Any suggested changes returned by the model are displayed with differences between the original and modified text highlighted in the window. The returned text often has subtle changes that may be difficult to spot, hence the visualization approach.
+#'
+#' The suggested edits may occasionally fail to follow the instructions from the prompt. Some of the models produce very low-quality results, like ada, and babbage.
+#'
+#' @param path file to check
+#' @param choose_token_level string "sentences" or "paragraphs", defaults to sentences. The document is parsed into individual sentences or paragraphs.
 #' @return a shiny app is launched
 #' @import shiny
 #' @examples
@@ -100,7 +155,8 @@ run_grammar_checker <- function(path, choose_token_level = "sentences"){
         ),
         selectInput(inputId = 'model',
                     label = "Choose model",
-                    choices = list("Davinci $.02" = "text-davinci-003",
+                    choices = list("gpt-3.5-turbo $.002" = "gpt-3.5-turbo",
+                                   "Davinci $.02" = "text-davinci-003",
                                    "Curie $.002" = "text-curie-001",
                                    "Babbage $.0005" = "text-babbage-001",
                                    "Ada $.0004" = "text-ada-001"),

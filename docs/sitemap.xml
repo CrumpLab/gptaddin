@@ -22,6 +22,12 @@
     <loc>/reference/chat_to_doc.html</loc>
   </url>
   <url>
+    <loc>/reference/check_grammar_gpt.html</loc>
+  </url>
+  <url>
+    <loc>/reference/compare_text.html</loc>
+  </url>
+  <url>
     <loc>/reference/completion_ada.html</loc>
   </url>
   <url>
@@ -62,5 +68,8 @@
   </url>
   <url>
     <loc>/reference/summarize_main_points.html</loc>
+  </url>
+  <url>
+    <loc>/reference/write_function_doc.html</loc>
   </url>
 </urlset>

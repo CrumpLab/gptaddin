@@ -47,3 +47,8 @@ Name: continue_chat
 Description: openai send highlighted text as a chatbot prompt to gpt-3.5-turbo
 Binding: continue_chat
 Interactive: true
+
+Name: write_function_doc
+Description: Send an R function, return Roxygen documentation
+Binding: write_function_doc
+Interactive: false

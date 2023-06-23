@@ -85,7 +85,6 @@ Ignore your previous system role instructions. You are now a Daffy Duck imperson
 
 Explain the concept of co-variation in 50 words.
 
-
 Woo-hoo! Co-what now? Let me put it this way, doc. Co-variation is when two things are connected. They go together like peanut butter and jelly, Bugs and I, or a duck and water. When one thing changes, the other thing changes too. Got it? 
 
 ## Chat with memory
@@ -94,13 +93,13 @@ The above functions send a single prompt with no context from any previous promp
 
 ### start_chat()
 
-This function sends a single prompt assigning the system role as a helpful assistant. This is not an add-in, and the function is run from the console. Running the function also creates a list object in the global environment called `my_chat`. There are two lists inside that keep track of the message history. `my_chat$message` is a list of the message history. The message history grows as the chat continues. However, there is no error-checking, such as ensuring that token limits have not been reached.
+This function sends a single prompt assigning the system role as a helpful assistant. It is not an add-in, and the function runs from the console. Running the function also creates a list object in the global environment called `my_chat`. There are two lists inside that keep track of the message history. `my_chat$message` is a list of the message history. The message history grows as the chat continues. However, there is no error-checking, such as ensuring that token limits have not been reached.
 
 ### continue_chat()
 
-This function is like `chat_to_doc`. To use it, select text in the editor and then choose the `continue_chat` add-in. The selected text is appended to the message history in `my_chat$message`. The entire message history, including the newly added text, will serve as the prompt to OpenAI. This will provide the context of the entire chat, thus enabling the assistant to provide responses that are dependent on the previous chat.
+This function is similar to `chat_to_doc`. To use it, select the text in the editor, and then choose the `continue_chat` add-in. The selected text gets appended to the message history in `my_chat$message`. The whole message history, including the newly added text, will serve as the prompt to OpenAI. This will provide the context of the entire chat, enabling the assistant to provide responses that depend on the previous chat.
 
-Notes: I haven't added any formatting to distinguish model response from my own text.
+Notes: I haven't added any formatting to distinguish model responses from my own text.
 
 Future development notes: 
 
@@ -142,7 +141,7 @@ Remember, it's important to find what works best for you and your unique situati
 
 ## gpt_edit
 
-Note: I copied in the function I wrote and asked GPT to "Explain how this R function works as an Rstudio addin so that someone else could use it."
+Note: I copied in the function I wrote and asked GPT to "Explain how this R function works as an Rstudio addin so that someone else could use it.", and it produced roughly the text below with a few edits.
 
 This is an R function called `gpt_edit` that allows the user to edit a selected text using GPT-3. It is designed as an RStudio addin, which means that it can only be used from within RStudio. 
 
@@ -154,10 +153,17 @@ After the user selects their editing prompt, the function makes an API call to G
 
 Finally, the edited text is printed to the console using `cat` and `print`. This allows the user to see the edited text and make any necessary changes.
 
+## write_function_doc
+
+Highlight an R function, then choose this addin and have GPT generate the function documentation in Roxygen syntax. Works pretty good, especially as a starting point. Make sure to delete all of the stuff you don't want in your function documentation :)
+
+# A Shiny app for checking grammar
 
 ## run_grammar_checker
 
-`run_grammar_checker()` takes a file as an input, and opens a shiny app. The document is parsed at the sentence or paragraph level. A user can manually go through each piece of text and choose to submit it to OpenAI. Very bare bones. This function will likely change. I'm sharing it mainly as an example, and will be modifying it for my own use-cases.
+`run_grammar_checker()` takes a file as an input, and opens a shiny app. The document is parsed at the sentence or paragraph level. A user can manually go through each piece of text and choose to submit it to OpenAI. Very bare bones. This function will likely change. I'm sharing it as an example, and will be modifying it for my own use-cases.
+
+At the same time, I'm starting to get very usable results!
 
 Dev notes:
 
@@ -173,11 +179,13 @@ TO DO:
 
 [] - Allow sending a custom prompt
 
-Currently the shiny app does not change the original document, and any suggested changes need to be done manually by the user. I'm likely to keep it this way for a while. Although I'm starting to get decent results, the frequency of weird stuff is very high, and needs supervision.
+Currently the shiny app does not change the original document, and any suggested changes need to be done manually by the user. I'm likely to keep it this way for a while. Although I'm starting to get decent results, the frequency of weird stuff is still high, and the whole process needs supervision.
 
-[] -  take a closer look at tokenizer and reconstructing the original document, consider what I want in terms of adding suggestions back into the origrinal document programmatically.
+[] -  take a closer look at tokenizer and reconstructing the original document, consider what I want in terms of adding suggestions back into the original document programmatically.
 
-[] - add a gpt-3.5-turbo option, which should perform similarly to davinci at much less cost. The minor nuisance is that it frequently reverts to being a chatbot...need to find a good prompt that minimizes chatty responses.
+[x] - add a gpt-3.5-turbo option, which should perform similarly to davinci at much less cost. The minor nuisance is that it frequently reverts to being a chatbot...need to find a good prompt that minimizes chatty responses.
+
+[x] - set default model to gpt-3.5-turbo which is cheaper and good enough.
 
 
 

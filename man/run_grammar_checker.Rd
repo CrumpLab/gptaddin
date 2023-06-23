@@ -2,22 +2,29 @@
 % Please edit documentation in R/grammar_shiny.R
 \name{run_grammar_checker}
 \alias{run_grammar_checker}
-\title{Start grammar checker shiny application
-Start the grammar checker.}
+\title{Start grammar checker shiny application}
 \usage{
 run_grammar_checker(path, choose_token_level = "sentences")
 }
 \arguments{
-\item{path}{the intended filepath}
+\item{path}{file to check}
 
-\item{choose_token_level}{string "sentences" or "paragraphs", defaults to sentences}
+\item{choose_token_level}{string "sentences" or "paragraphs", defaults to sentences. The document is parsed into individual sentences or paragraphs.}
 }
 \value{
 a shiny app is launched
 }
 \description{
-Start grammar checker shiny application
-Start the grammar checker.
+This shiny app allows a user to manually check each sentence or paragraph in a file using OpenAI LLMs.
+}
+\details{
+The text file is split into sentences or paragraphs. The user manually goes through each and chooses whether or not to send the current text for suggested feedback.
+
+The prompts used for each checking option are defined in check_grammar_gpt.
+
+Any suggested changes returned by the model are displayed with differences between the original and modified text highlighted in the window. The returned text often has subtle changes that may be difficult to spot, hence the visualization approach.
+
+The suggested edits may occasionally fail to follow the instructions from the prompt. Some of the models produce very low-quality results, like ada, and babbage.
 }
 \examples{
 # don't run during tests

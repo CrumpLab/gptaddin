@@ -72,9 +72,9 @@
     
 <iframe width="560" height="315" src="https://www.youtube.com/embed/BKatbHBCCc0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
 </iframe>
-<div class="section level2">
-<h2 id="line-editor">Line Editor<a class="anchor" aria-label="anchor" href="#line-editor"></a>
-</h2>
+<div class="section level3">
+<h3 id="line-editor">Line Editor<a class="anchor" aria-label="anchor" href="#line-editor"></a>
+</h3>
 <p>Select some text in RStudio, and then run the line editor addin. A
 revised version of the selected text will be printed to the console.</p>
 <hr>
@@ -84,9 +84,9 @@ version of your selected text that takes into account clarity, flow, and
 reduced word count. Remember to use an active voice while editing.</p>
 <hr>
 </div>
-<div class="section level2">
-<h2 id="points-to-prose">Points to Prose<a class="anchor" aria-label="anchor" href="#points-to-prose"></a>
-</h2>
+<div class="section level3">
+<h3 id="points-to-prose">Points to Prose<a class="anchor" aria-label="anchor" href="#points-to-prose"></a>
+</h3>
 <p>Select some bullet points in RStudio, and then run the points to
 prose addin. The points are expanded to longform prose and printed to
 the console.</p>
@@ -112,9 +112,9 @@ dietary needs are met and that they have access to fresh water at all
 times.</p>
 <hr>
 </div>
-<div class="section level2">
-<h2 id="summarize-main-points">Summarize main points<a class="anchor" aria-label="anchor" href="#summarize-main-points"></a>
-</h2>
+<div class="section level3">
+<h3 id="summarize-main-points">Summarize main points<a class="anchor" aria-label="anchor" href="#summarize-main-points"></a>
+</h3>
 <p>Select some text in RStudio, and then run the summarize main points
 addin. Bullet points about the selected text will be printed to the
 console.</p>
@@ -156,9 +156,9 @@ and rapid deactivation of distal past actions during the task.</p></li>
 </ul>
 <hr>
 </div>
-<div class="section level2">
-<h2 id="chat-to-doc">Chat to doc<a class="anchor" aria-label="anchor" href="#chat-to-doc"></a>
-</h2>
+<div class="section level3">
+<h3 id="chat-to-doc">Chat to doc<a class="anchor" aria-label="anchor" href="#chat-to-doc"></a>
+</h3>
 <p>Selected text in RStudio is sent as a prompt to gpt-3.5-turbo. The
 selected text is replaced with the original text, and the response from
 the model. The text is returned inside the Rstudio document, not inside
@@ -186,39 +186,38 @@ when two things are connected. They go together like peanut butter and
 jelly, Bugs and I, or a duck and water. When one thing changes, the
 other thing changes too. Got it?</p>
 </div>
-<div class="section level2">
-<h2 id="chat-with-memory">Chat with memory<a class="anchor" aria-label="anchor" href="#chat-with-memory"></a>
-</h2>
+<div class="section level3">
+<h3 id="chat-with-memory">Chat with memory<a class="anchor" aria-label="anchor" href="#chat-with-memory"></a>
+</h3>
 <p>The above functions send a single prompt with no context from any
 previous prompt. As a result, chat-like behavior consisting of a
 back-and-forth series of prompts is not implemented. The
 <code><a href="../reference/start_chat.html">start_chat()</a></code> function and <code>continue_chat</code> addin
 provide some of this functionality. These functions could be further
 improved, especially for scoping purposes.</p>
-<div class="section level3">
-<h3 id="start_chat">start_chat()<a class="anchor" aria-label="anchor" href="#start_chat"></a>
-</h3>
+<div class="section level4">
+<h4 id="start_chat">start_chat()<a class="anchor" aria-label="anchor" href="#start_chat"></a>
+</h4>
 <p>This function sends a single prompt assigning the system role as a
-helpful assistant. This is not an add-in, and the function is run from
-the console. Running the function also creates a list object in the
-global environment called <code>my_chat</code>. There are two lists
-inside that keep track of the message history.
-<code>my_chat$message</code> is a list of the message history. The
-message history grows as the chat continues. However, there is no
-error-checking, such as ensuring that token limits have not been
-reached.</p>
+helpful assistant. It is not an add-in, and the function runs from the
+console. Running the function also creates a list object in the global
+environment called <code>my_chat</code>. There are two lists inside that
+keep track of the message history. <code>my_chat$message</code> is a
+list of the message history. The message history grows as the chat
+continues. However, there is no error-checking, such as ensuring that
+token limits have not been reached.</p>
 </div>
-<div class="section level3">
-<h3 id="continue_chat">continue_chat()<a class="anchor" aria-label="anchor" href="#continue_chat"></a>
-</h3>
-<p>This function is like <code>chat_to_doc</code>. To use it, select
-text in the editor and then choose the <code>continue_chat</code>
-add-in. The selected text is appended to the message history in
-<code>my_chat$message</code>. The entire message history, including the
-newly added text, will serve as the prompt to OpenAI. This will provide
-the context of the entire chat, thus enabling the assistant to provide
-responses that are dependent on the previous chat.</p>
-<p>Notes: I haven’t added any formatting to distinguish model response
+<div class="section level4">
+<h4 id="continue_chat">continue_chat()<a class="anchor" aria-label="anchor" href="#continue_chat"></a>
+</h4>
+<p>This function is similar to <code>chat_to_doc</code>. To use it,
+select the text in the editor, and then choose the
+<code>continue_chat</code> add-in. The selected text gets appended to
+the message history in <code>my_chat$message</code>. The whole message
+history, including the newly added text, will serve as the prompt to
+OpenAI. This will provide the context of the entire chat, enabling the
+assistant to provide responses that depend on the previous chat.</p>
+<p>Notes: I haven’t added any formatting to distinguish model responses
 from my own text.</p>
 <p>Future development notes:</p>
 <ul>
@@ -229,9 +228,9 @@ for a new chat. This should provide a larger range of somewhat
 continuous chat like behavior.</li>
 </ul>
 </div>
-<div class="section level3">
-<h3 id="example-usage">Example usage<a class="anchor" aria-label="anchor" href="#example-usage"></a>
-</h3>
+<div class="section level4">
+<h4 id="example-usage">Example usage<a class="anchor" aria-label="anchor" href="#example-usage"></a>
+</h4>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">gptaddin</span><span class="fu">::</span><span class="fu"><a href="../reference/start_chat.html">start_chat</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -269,12 +268,12 @@ thoughts, so don’t be afraid to experiment with different techniques
 until you find what works best for you.</p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="gpt_edit">gpt_edit<a class="anchor" aria-label="anchor" href="#gpt_edit"></a>
-</h2>
+<div class="section level3">
+<h3 id="gpt_edit">gpt_edit<a class="anchor" aria-label="anchor" href="#gpt_edit"></a>
+</h3>
 <p>Note: I copied in the function I wrote and asked GPT to “Explain how
 this R function works as an Rstudio addin so that someone else could use
-it.”</p>
+it.”, and it produced roughly the text below with a few edits.</p>
 <p>This is an R function called <code>gpt_edit</code> that allows the
 user to edit a selected text using GPT-3. It is designed as an RStudio
 addin, which means that it can only be used from within RStudio.</p>
@@ -295,15 +294,27 @@ prompt to GPT-3 for editing.</p>
 <code>cat</code> and <code>print</code>. This allows the user to see the
 edited text and make any necessary changes.</p>
 </div>
+<div class="section level3">
+<h3 id="write_function_doc">write_function_doc<a class="anchor" aria-label="anchor" href="#write_function_doc"></a>
+</h3>
+<p>Highlight an R function, then choose this addin and have GPT generate
+the function documentation in Roxygen syntax. Works pretty good,
+especially as a starting point. Make sure to delete all of the stuff you
+don’t want in your function documentation :)</p>
+</div>
 <div class="section level2">
-<h2 id="run_grammar_checker">run_grammar_checker<a class="anchor" aria-label="anchor" href="#run_grammar_checker"></a>
+<h2 id="a-shiny-app-for-checking-grammar">A Shiny app for checking grammar<a class="anchor" aria-label="anchor" href="#a-shiny-app-for-checking-grammar"></a>
 </h2>
+<div class="section level3">
+<h3 id="run_grammar_checker">run_grammar_checker<a class="anchor" aria-label="anchor" href="#run_grammar_checker"></a>
+</h3>
 <p><code><a href="../reference/run_grammar_checker.html">run_grammar_checker()</a></code> takes a file as an input, and
 opens a shiny app. The document is parsed at the sentence or paragraph
 level. A user can manually go through each piece of text and choose to
 submit it to OpenAI. Very bare bones. This function will likely change.
-I’m sharing it mainly as an example, and will be modifying it for my own
+I’m sharing it as an example, and will be modifying it for my own
 use-cases.</p>
+<p>At the same time, I’m starting to get very usable results!</p>
 <p>Dev notes:</p>
 <ul>
 <li><p>Improved the display of visual differences. The API was returning
@@ -320,15 +331,18 @@ the app</p>
 <p>Currently the shiny app does not change the original document, and
 any suggested changes need to be done manually by the user. I’m likely
 to keep it this way for a while. Although I’m starting to get decent
-results, the frequency of weird stuff is very high, and needs
-supervision.</p>
+results, the frequency of weird stuff is still high, and the whole
+process needs supervision.</p>
 <p>[] - take a closer look at tokenizer and reconstructing the original
 document, consider what I want in terms of adding suggestions back into
-the origrinal document programmatically.</p>
-<p>[] - add a gpt-3.5-turbo option, which should perform similarly to
+the original document programmatically.</p>
+<p>[x] - add a gpt-3.5-turbo option, which should perform similarly to
 davinci at much less cost. The minor nuisance is that it frequently
 reverts to being a chatbot…need to find a good prompt that minimizes
 chatty responses.</p>
+<p>[x] - set default model to gpt-3.5-turbo which is cheaper and good
+enough.</p>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

@@ -473,4 +473,44 @@ continue_chat <- function(){
                          id = active_context$id)
 }
 
+#' Generates documentation in Roxygen syntax for an R function
+#'
+#' This addin is registered and accessible through RStudio. The input to the function is any highighted text in the RStudio editor.
+#'
+#' @return the documentation is printed to the console
+#'
+#' @examples
+#' #write_function_doc()
+#'
+#' @export
+write_function_doc <- function(){
+
+  # get selected text
+  selected_text <- rstudioapi::selectionGet()
+
+  message("Submitting query...")
+
+  # run the api call to openai
+  gpt <- openai::create_chat_completion(
+    model = "gpt-3.5-turbo",
+    messages = list(
+      list(
+        "role" = "system",
+        "content" = "You are an expert R programmer capable of writing clear function documentation in the Roxygen syntax. You will receive an R function, and return the function documentation in Roxygen syntax."
+      ),
+      list(
+        "role" = "assistant",
+        "content" = "Ok, what is the function?"
+      ),
+      list(
+        "role" = "user",
+        "content" = selected_text$value
+      )
+    )
+  )
+
+  # print the results to the console
+  print(cat(gpt$choices$message.content))
+}
+
 
