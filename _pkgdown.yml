@@ -1,5 +1,6 @@
 url: https://crumplab.com/gptaddin
 template:
+  package: preferably
   bootstrap: 5
   opengraph:
     img: logo.png
