@@ -159,10 +159,23 @@ Finally, the edited text is printed to the console using `cat` and `print`. This
 
 `run_grammar_checker()` takes a file as an input, and opens a shiny app. The document is parsed at the sentence or paragraph level. A user can manually go through each piece of text and choose to submit it to OpenAI. Very bare bones. This function will likely change. I'm sharing it mainly as an example, and will be modifying it for my own use-cases.
 
+Dev notes:
 
+- Improved the display of visual differences. The API was returning text with new line characters causing failure of difference detection in the suggested text window. New line characters are now removed from the suggested text.
 
+- Added some API model selection
 
+TO DO:
 
+[x] - Add scroll bar to quickly move around document location.
+
+[] - Allow document to be reparsed at sentence or paragraph level in the app
+
+[] - Allow sending a custom prompt
+
+Currently the shiny app does not change the original document, and any suggested changes need to be done manually by the user. I'm likely to keep it this way for a while. Although I'm starting to get decent results, the frequency of weird stuff is very high, and needs supervision.
+
+[] -  take a closer look at tokenizer and reconstructing the original document, consider what I want in terms of adding suggestions back into the origrinal document programmatically.
 
 
 

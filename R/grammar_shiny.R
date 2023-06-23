@@ -1,4 +1,4 @@
-check_grammar_gpt <- function(text_to_edit,user_choice){
+check_grammar_gpt <- function(text_to_edit,user_choice, model_type){
 
   # get selected text
   selected_text <- text_to_edit
@@ -16,15 +16,16 @@ check_grammar_gpt <- function(text_to_edit,user_choice){
   }
 
   gpt <- openai::create_completion(
-    model = "text-davinci-003",
+    model = model_type,
     prompt = paste(system_content,"\n",selected_text),
-    max_tokens = 2024,
+    max_tokens = 1000,
 
   )
 
   #print(gpt) error-checking
+  my_string <- gsub("\n", "", gpt$choices$text)
 
-  return(gpt$choices$text)
+  return(my_string)
 }
 
 compare_text <- function(original_text, modified_text) {
@@ -97,6 +98,19 @@ run_grammar_checker <- function(path, choose_token_level = "sentences"){
                                             "Improved clarity" = "clarity"),
                             multiple = FALSE
         ),
+        selectInput(inputId = 'model',
+                    label = "Choose model",
+                    choices = list("Davinci $.02" = "text-davinci-003",
+                                   "Curie $.002" = "text-curie-001",
+                                   "Babbage $.0005" = "text-babbage-001",
+                                   "Ada $.0004" = "text-ada-001"),
+                    multiple = FALSE
+        ),
+        sliderInput(inputId = "doc_location",
+                    "Scroll Document",
+                    min = 1,
+                    max = length(sentences),
+                    value = 1),
         actionButton("nextS", "Next"),
         actionButton("submit","Submit"),
         actionButton("backS", "Back"),
@@ -110,7 +124,7 @@ run_grammar_checker <- function(path, choose_token_level = "sentences"){
                       width = 500,
                       resize = "both"),
         h3("Suggestion"),
-        htmlOutput(outputId = "text")
+        htmlOutput(outputId = "suggested_text")
       )
     )
   )
@@ -133,23 +147,35 @@ run_grammar_checker <- function(path, choose_token_level = "sentences"){
       }
     })
 
+    # scroll through document
+    observeEvent(input$doc_location, {
+        counter <<- input$doc_location
+        updateTextInput(session, "text", value = sentences[counter])
+    })
+
     # submit sentence for checking to OpenAI API
     observeEvent(input$submit, {
-      #print(input$options)
-      output$text <- renderText({
-        "Submitting text..."
+      print(sentences[counter])
+      print(input$options)
+      print(input$model)
+
+      #pass text to API and get result
+      suggestion <- check_grammar_gpt(sentences[counter],
+                                      input$options,
+                                      input$model)
+
+      # find differences between original and modified text
+      diff_1 <- compare_text(sentences[counter],suggestion)
+
+      # display differences
+      output$suggested_text <- renderUI({
+        HTML(diff_1)
       })
-      suggestion <- check_grammar_gpt(sentences[counter],input$options)
-      diff <- compare_text(sentences[counter],suggestion)
-      output$text <- renderUI({
-        HTML(diff)
-      })
+
     })
 
     # exit the app
     observeEvent(input$exit, {
-      #text_df[ text_df$line_num == check_df$line_num[counter], "text"] <- input$text
-      #writeLines(text_df$text, path)
       stopApp()
     })
   }

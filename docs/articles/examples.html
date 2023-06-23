@@ -304,6 +304,27 @@ level. A user can manually go through each piece of text and choose to
 submit it to OpenAI. Very bare bones. This function will likely change.
 I’m sharing it mainly as an example, and will be modifying it for my own
 use-cases.</p>
+<p>Dev notes:</p>
+<ul>
+<li><p>Improved the display of visual differences. The API was returning
+text with new line characters causing failure of difference detection in
+the suggested text window. New line characters are now removed from the
+suggested text.</p></li>
+<li><p>Added some API model selection</p></li>
+</ul>
+<p>TO DO:</p>
+<p>[x] - Add scroll bar to quickly move around document location.</p>
+<p>[] - Allow document to be reparsed at sentence or paragraph level in
+the app</p>
+<p>[] - Allow sending a custom prompt</p>
+<p>Currently the shiny app does not change the original document, and
+any suggested changes need to be done manually by the user. I’m likely
+to keep it this way for a while. Although I’m starting to get decent
+results, the frequency of weird stuff is very high, and needs
+supervision.</p>
+<p>[] - take a closer look at tokenizer and reconstructing the original
+document, consider what I want in terms of adding suggestions back into
+the origrinal document programmatically.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
