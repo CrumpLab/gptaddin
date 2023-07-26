@@ -11,10 +11,12 @@
 #'
 #' The model receives the highlighted text, generates a response following the prompt, and returns the new suggested text to the console.
 #'
+#' @param model_type string, default "gpt-3.5-turbo"
+#'
 #' @return string to console
 #' @export
 #'
-line_editor <- function(){
+line_editor <- function(model_type = "gpt-3.5-turbo"){
 
 
   # get selected text
@@ -24,7 +26,7 @@ line_editor <- function(){
 
   # run the api call to openai
   gpt <- openai::create_chat_completion(
-    model = "gpt-3.5-turbo",
+    model = model_type,
     messages = list(
       list(
         "role" = "system",
@@ -53,10 +55,12 @@ line_editor <- function(){
 #'
 #' The model receives the highlighted text, generates a response following the prompt, and returns the new suggested text to the console.
 #'
+#' @param model_type string, default "gpt-3.5-turbo"
+#'
 #' @return string to console
 #' @export
 #'
-gpt_edit <- function(){
+gpt_edit <- function(model_type = "gpt-3.5-turbo"){
 
   # get selected text
   selected_text <- rstudioapi::selectionGet()
@@ -89,7 +93,7 @@ gpt_edit <- function(){
 
   # run the api call to openai
   gpt <- openai::create_chat_completion(
-    model = "gpt-3.5-turbo",
+    model = model_type,
     messages = list(
       list(
         "role" = "system",
@@ -118,10 +122,12 @@ gpt_edit <- function(){
 #'
 #' The model receives the highlighted text, generates a response following the prompt, and returns the new suggested text to the console.
 #'
+#' @param model_type string, default "gpt-3.5-turbo"
+#'
 #' @return string to console
 #' @export
 #'
-line_editor_markdown <- function(){
+line_editor_markdown <- function(model_type = "gpt-3.5-turbo"){
 
 
   # get selected text
@@ -131,7 +137,7 @@ line_editor_markdown <- function(){
 
   # run the api call to openai
   gpt <- openai::create_chat_completion(
-    model = "gpt-3.5-turbo",
+    model = model_type,
     messages = list(
       list(
         "role" = "system",
@@ -162,10 +168,12 @@ line_editor_markdown <- function(){
 #'
 #' The model receives the highlighted text, generates a response following the prompt, and returns the new suggested text to the console.
 #'
+#' @param model_type string, default "gpt-3.5-turbo"
+#'
 #' @return string to console
 #' @export
 #'
-points_to_prose <- function(){
+points_to_prose <- function(model_type = "gpt-3.5-turbo"){
 
 
   # get selected text
@@ -175,7 +183,7 @@ points_to_prose <- function(){
 
   # run the api call to openai
   gpt <- openai::create_chat_completion(
-    model = "gpt-3.5-turbo",
+    model = model_type,
     messages = list(
       list(
         "role" = "system",
@@ -205,9 +213,11 @@ points_to_prose <- function(){
 #'
 #' The model receives the highlighted text, generates a response following the prompt, and returns the new suggested text to the console.
 #'
+#' @param model_type string, default "gpt-3.5-turbo"
+#'
 #' @return string to console
 #' @export
-summarize_main_points <- function(){
+summarize_main_points <- function(model_type = "gpt-3.5-turbo"){
 
   # get selected text
   selected_text <- rstudioapi::selectionGet()
@@ -216,7 +226,7 @@ summarize_main_points <- function(){
 
   # run the api call to openai
   gpt <- openai::create_chat_completion(
-    model = "gpt-3.5-turbo",
+    model = model_type,
     messages = list(
       list(
         "role" = "system",
@@ -292,8 +302,7 @@ completion_davinci <- function(){
   gpt <- openai::create_completion(
     model = "text-davinci-003",
     prompt = selected_text$value,
-    max_tokens = 256,
-
+    max_tokens = 256
   )
 
   # print the results to the console
@@ -302,19 +311,21 @@ completion_davinci <- function(){
 }
 
 
-#' Send highlighted text as a completion prompt to gpt-3.5-turbo
+#' Send highlighted text as a completion prompt to gpt-4
 #'
 #' This is an RStudio addin function that should become available after the package is installed.
 #'
 #' Highlight text in an editor window while using Rstudio, then select the addin from the drop-down menu.
 #'
-#' This function sends the selected text to a gpt-3.5-turbo model
+#' This function sends the selected text to a gpt-4 model
 #'
 #' The model receives the highlighted text, generates a completion prompt, and returns the generated text to the console.
 #'
+#' @param model_type string, default "gpt-4"
+#'
 #' @return string to console
 #' @export
-completion_chat <- function(){
+completion_chat <- function(model_type = "gpt-4"){
 
   # get selected text
   selected_text <- rstudioapi::selectionGet()
@@ -323,7 +334,7 @@ completion_chat <- function(){
 
   # run the api call to openai
   gpt <- openai::create_chat_completion(
-    model = "gpt-3.5-turbo",
+    model = model_type,
     messages = list(
       list(
         "role" = "system",
@@ -340,19 +351,21 @@ completion_chat <- function(){
   print(cat(gpt$choices$message.content))
 }
 
-#' Send highlighted text to gpt-3.5-turbo output to doc
+#' Send highlighted text to gpt-4 output to doc
 #'
 #' This is an RStudio addin function that should become available after the package is installed.
 #'
 #' Highlight text in an editor window while using Rstudio, then select the addin from the drop-down menu.
 #'
-#' This function sends the selected text to a gpt-3.5-turbo model and returns the output to the document, not the console.
+#' This function sends the selected text to a gpt-4 model and returns the output to the document, not the console.
 #'
 #' The selected text is replaced with the original text, a new line, and the response from the model.
 #'
+#' @param model_type string, default "gpt-4"
+#'
 #' @return string to console
 #' @export
-chat_to_doc <- function(){
+chat_to_doc <- function(model_type = "gpt-4"){
 
   # get document id and selection range
   active_context <- rstudioapi::getActiveDocumentContext()
@@ -365,7 +378,7 @@ chat_to_doc <- function(){
 
   #run the api call to openai
   gpt <- openai::create_chat_completion(
-    model = "gpt-3.5-turbo",
+    model = model_type,
     messages = list(
       list(
         "role" = "system",
@@ -393,10 +406,12 @@ chat_to_doc <- function(){
 #'
 #' Very basic right now, no error checking. Chat history is preserved in my_chat which is returned to the global environment. Running this function initializes my_chat, and deletes anything that was in there.
 #'
+#' @param model_type string, default "gpt-4"
+#'
 #' @return list called my_chat to the global environment
 #'
 #' @export
-start_chat <- function(){
+start_chat <- function(model_type = "gpt-4"){
 
   # make list to save results
   my_chat <<- list()
@@ -409,7 +424,7 @@ start_chat <- function(){
 
   # send prompt
   gpt <- openai::create_chat_completion(
-    model = "gpt-3.5-turbo",
+    model = model_type,
     messages = my_chat$message
   )
 
@@ -433,10 +448,12 @@ start_chat <- function(){
 #'
 #' The selected text is combined with the existing message history and sent as a prompt to OpenAI.
 #'
+#' @param model_type string, default "gpt-4"
+#'
 #' @return string to the editor window
 #'
 #' @export
-continue_chat <- function(){
+continue_chat <- function(model_type="gpt-4"){
 
   # get document id and selection range
   active_context <- rstudioapi::getActiveDocumentContext()
@@ -452,7 +469,7 @@ continue_chat <- function(){
 
   # send prompt
   gpt <- openai::create_chat_completion(
-    model = "gpt-3.5-turbo",
+    model = model_type,
     messages = my_chat$message
   )
 
@@ -475,7 +492,9 @@ continue_chat <- function(){
 
 #' Generates documentation in Roxygen syntax for an R function
 #'
-#' This addin is registered and accessible through RStudio. The input to the function is any highighted text in the RStudio editor.
+#' This addin is registered and accessible through RStudio. The input to the function is any highlighted text in the RStudio editor.
+#'
+#' @param model_type string, default "gpt-4"
 #'
 #' @return the documentation is printed to the console
 #'
@@ -483,7 +502,7 @@ continue_chat <- function(){
 #' #write_function_doc()
 #'
 #' @export
-write_function_doc <- function(){
+write_function_doc <- function(model_type="gpt-4"){
 
   # get selected text
   selected_text <- rstudioapi::selectionGet()
@@ -492,7 +511,7 @@ write_function_doc <- function(){
 
   # run the api call to openai
   gpt <- openai::create_chat_completion(
-    model = "gpt-3.5-turbo",
+    model = model_type,
     messages = list(
       list(
         "role" = "system",

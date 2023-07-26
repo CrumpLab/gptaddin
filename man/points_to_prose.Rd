@@ -4,7 +4,10 @@
 \alias{points_to_prose}
 \title{Convert point form to longform prose}
 \usage{
-points_to_prose()
+points_to_prose(model_type = "gpt-3.5-turbo")
+}
+\arguments{
+\item{model_type}{string, default "gpt-3.5-turbo"}
 }
 \value{
 string to console

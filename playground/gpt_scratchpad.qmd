@@ -1,1 +1,25 @@
-The add-ins are intended to provide writing assistant functions, such as taking the selected text and having a GPT model suggest edits.
+---
+title: "test"
+---
+
+
+Return the following text without modification:
+
+The Computational Cognition Lab at Brooklyn College of CUNY investigates learning, memory, attention, performance, and semantic cognition. We questions like how do people learn new skills such as playing an instrument or typing on a keyboard? How does memory work? How do people learn the meaning of words? How do people learn patterns and regularities in their environment? These kinds of questions are investigated using behavioral experiments and computational modeling of cognitive processes. The lab also uses a variety of computational methods and tools to conduct and communicate research.
+
+
+
+```{r}
+input_text <- "Return the following text without modification: The Computational Cognition Lab at Brooklyn College of CUNY investigates learning, memory, attention, performance, and semantic cognition. We questions like how do people learn new skills such as playing an instrument or typing on a keyboard? How does memory work? How do people learn the meaning of words? How do people learn patterns and regularities in their environment? These kinds of questions are investigated using behavioral experiments and computational modeling of cognitive processes. The lab also uses a variety of computational methods and tools to conduct and communicate research."
+
+gpt <- openai::create_completion(
+    model = "text-davinci-003",
+    prompt = input_text,
+    max_tokens = 256,
+    temperature = 1,
+    top_p = .9
+  )
+
+gpt$choices$text
+```
+

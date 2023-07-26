@@ -4,7 +4,10 @@
 \alias{continue_chat}
 \title{Continue a chat with message history}
 \usage{
-continue_chat()
+continue_chat(model_type = "gpt-4")
+}
+\arguments{
+\item{model_type}{string, default "gpt-4"}
 }
 \value{
 string to the editor window

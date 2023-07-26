@@ -4,7 +4,10 @@
 \alias{line_editor_markdown}
 \title{Get suggested line edits with markdown flagged changes}
 \usage{
-line_editor_markdown()
+line_editor_markdown(model_type = "gpt-3.5-turbo")
+}
+\arguments{
+\item{model_type}{string, default "gpt-3.5-turbo"}
 }
 \value{
 string to console

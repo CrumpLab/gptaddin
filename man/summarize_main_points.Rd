@@ -4,7 +4,10 @@
 \alias{summarize_main_points}
 \title{summarize text into a series of points}
 \usage{
-summarize_main_points()
+summarize_main_points(model_type = "gpt-3.5-turbo")
+}
+\arguments{
+\item{model_type}{string, default "gpt-3.5-turbo"}
 }
 \value{
 string to console

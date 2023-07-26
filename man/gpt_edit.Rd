@@ -4,7 +4,10 @@
 \alias{gpt_edit}
 \title{Get suggested line edits}
 \usage{
-gpt_edit()
+gpt_edit(model_type = "gpt-3.5-turbo")
+}
+\arguments{
+\item{model_type}{string, default "gpt-3.5-turbo"}
 }
 \value{
 string to console

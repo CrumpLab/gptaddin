@@ -4,7 +4,10 @@
 \alias{start_chat}
 \title{Start a continuous chat with message history}
 \usage{
-start_chat()
+start_chat(model_type = "gpt-4")
+}
+\arguments{
+\item{model_type}{string, default "gpt-4"}
 }
 \value{
 list called my_chat to the global environment

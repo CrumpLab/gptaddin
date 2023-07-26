@@ -2,9 +2,12 @@
 % Please edit documentation in R/addins.R
 \name{chat_to_doc}
 \alias{chat_to_doc}
-\title{Send highlighted text to gpt-3.5-turbo output to doc}
+\title{Send highlighted text to gpt-4 output to doc}
 \usage{
-chat_to_doc()
+chat_to_doc(model_type = "gpt-4")
+}
+\arguments{
+\item{model_type}{string, default "gpt-4"}
 }
 \value{
 string to console
@@ -15,7 +18,7 @@ This is an RStudio addin function that should become available after the package
 \details{
 Highlight text in an editor window while using Rstudio, then select the addin from the drop-down menu.
 
-This function sends the selected text to a gpt-3.5-turbo model and returns the output to the document, not the console.
+This function sends the selected text to a gpt-4 model and returns the output to the document, not the console.
 
 The selected text is replaced with the original text, a new line, and the response from the model.
 }

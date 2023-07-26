@@ -28,7 +28,7 @@ check_grammar_gpt <- function(text_to_edit,user_choice, model_type){
     system_content <- "You are an editorial writing assistant. Edit the text to improve clarity and flow."
   }
 
-  if( model_type != "gpt-3.5-turbo"){
+  if( model_type %in% c("text-davinci-003","text-curie-001","text-babbage-001","text-ada-001")){
     gpt <- openai::create_completion(
       model = model_type,
       prompt = paste(system_content,"\n",selected_text),
@@ -38,9 +38,9 @@ check_grammar_gpt <- function(text_to_edit,user_choice, model_type){
     model_response <- gpt$choices$text
   }
 
-  if( model_type == "gpt-3.5-turbo"){
+  if( model_type %in% c("gpt-3.5-turbo","gpt-4")){
     gpt <- openai::create_chat_completion(
-      model = "gpt-3.5-turbo",
+      model = model_type,
       messages = list(
         list(
           "role" = "system",
@@ -156,7 +156,8 @@ run_grammar_checker <- function(path, choose_token_level = "paragraphs"){
         selectInput(inputId = 'model',
                     label = "Choose model",
                     choices = list("gpt-3.5-turbo $.002" = "gpt-3.5-turbo",
-                                   "Davinci $.02" = "text-davinci-003",
+                                   "gpt-4 $.03" = "gpt-4",
+                                   "Davinci $.03" = "text-davinci-003",
                                    "Curie $.002" = "text-curie-001",
                                    "Babbage $.0005" = "text-babbage-001",
                                    "Ada $.0004" = "text-ada-001"),

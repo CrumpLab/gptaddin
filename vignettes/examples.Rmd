@@ -203,3 +203,5 @@ Currently the shiny app does not change the original document, and any suggested
 
 [x] - add a quick copy button that puts the suggested edit into the clipboard.
 
+[] - getting errors in the console, may be due to the clipboard function
+

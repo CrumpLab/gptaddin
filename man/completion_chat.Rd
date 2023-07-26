@@ -2,9 +2,12 @@
 % Please edit documentation in R/addins.R
 \name{completion_chat}
 \alias{completion_chat}
-\title{Send highlighted text as a completion prompt to gpt-3.5-turbo}
+\title{Send highlighted text as a completion prompt to gpt-4}
 \usage{
-completion_chat()
+completion_chat(model_type = "gpt-4")
+}
+\arguments{
+\item{model_type}{string, default "gpt-4"}
 }
 \value{
 string to console
@@ -15,7 +18,7 @@ This is an RStudio addin function that should become available after the package
 \details{
 Highlight text in an editor window while using Rstudio, then select the addin from the drop-down menu.
 
-This function sends the selected text to a gpt-3.5-turbo model
+This function sends the selected text to a gpt-4 model
 
 The model receives the highlighted text, generates a completion prompt, and returns the generated text to the console.
 }

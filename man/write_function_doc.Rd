@@ -4,13 +4,16 @@
 \alias{write_function_doc}
 \title{Generates documentation in Roxygen syntax for an R function}
 \usage{
-write_function_doc()
+write_function_doc(model_type = "gpt-4")
+}
+\arguments{
+\item{model_type}{string, default "gpt-4"}
 }
 \value{
 the documentation is printed to the console
 }
 \description{
-This addin is registered and accessible through RStudio. The input to the function is any highighted text in the RStudio editor.
+This addin is registered and accessible through RStudio. The input to the function is any highlighted text in the RStudio editor.
 }
 \examples{
 #write_function_doc()
