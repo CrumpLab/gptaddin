@@ -11,7 +11,7 @@
 #' @return Returns the edited text as a string.
 #'
 #' @export
-check_grammar_gpt <- function(text_to_edit,user_choice, model_type){
+check_grammar_gpt <- function(text_to_edit, user_choice, model_type, custom_prompt){
 
   # get selected text
   selected_text <- text_to_edit
@@ -27,6 +27,12 @@ check_grammar_gpt <- function(text_to_edit,user_choice, model_type){
   if( user_choice == "clarity"){
     system_content <- "You are an editorial writing assistant. Edit the text to improve clarity and flow."
   }
+
+  if( user_choice == "custom"){
+    system_content <- custom_prompt
+  }
+
+
 
   if( model_type %in% c("text-davinci-003","text-curie-001","text-babbage-001","text-ada-001")){
     gpt <- openai::create_completion(
@@ -150,7 +156,8 @@ run_grammar_checker <- function(path, choose_token_level = "paragraphs"){
                            label = "Choose prompt",
                            choices = list("Basic Spelling and grammar" = "spelling_grammar",
                                             "Reduced word count" = "word_count",
-                                            "Improved clarity" = "clarity"),
+                                            "Improved clarity" = "clarity",
+                                            "Custom" = "custom"),
                             multiple = FALSE
         ),
         selectInput(inputId = 'model',
@@ -171,7 +178,17 @@ run_grammar_checker <- function(path, choose_token_level = "paragraphs"){
         actionButton("nextS", "Next"),
         actionButton("submit","Submit"),
         actionButton("backS", "Back"),
-        actionButton("exit", "Finish")
+        actionButton("exit", "Finish"),
+        textAreaInput(inputId  = 'system_text',
+                      label  = 'System Role',
+                      value  = "You are a blah blah blah, that will do something to the text.",
+                      height = 100,
+                      resize = "both"),
+        textAreaInput(inputId  = 'assistant_text',
+                      label  = 'Assistant Role',
+                      value  = "Ok, please send the text",
+                      height = 100,
+                      resize = "both")
       ),
       mainPanel(
         textAreaInput(inputId  = 'text',
@@ -219,14 +236,17 @@ run_grammar_checker <- function(path, choose_token_level = "paragraphs"){
       #print(sentences[counter])
       #print(input$options)
       #print(input$model)
+      #print(input$text)
 
       #pass text to API and get result
-      values$suggestion <- check_grammar_gpt(sentences[counter],
+      #if user has modified the text, the text in the box will be sent
+      values$suggestion <- check_grammar_gpt(input$text,
                                       input$options,
-                                      input$model)
+                                      input$model,
+                                      input$system_text)
 
       # find differences between original and modified text
-      diff_1 <- compare_text(sentences[counter],values$suggestion)
+      diff_1 <- compare_text(input$text,values$suggestion)
 
       # display differences
       output$suggested_text <- renderUI({

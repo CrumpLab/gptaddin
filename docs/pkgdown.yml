@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   examples: examples.html
-last_built: 2023-07-26T14:20Z
+last_built: 2023-07-27T15:33Z
 urls:
   reference: https://crumplab.com/gptaddin/reference
   article: https://crumplab.com/gptaddin/articles
